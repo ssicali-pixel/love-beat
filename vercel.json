@@ -1,10 +1,5 @@
 {
-  "version": 2,
-  "buildCommand": "npx vite build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/handler" },
-    { "source": "/dashboard",  "destination": "/dashboard.html" },
-    { "source": "/:path*",     "destination": "/index.html" }
-  ]
+  "framework": "vite"
 }
