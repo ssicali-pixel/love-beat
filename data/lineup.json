@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "DJ Solaris",
+    "genre": "Deep House",
+    "day": "Sabato",
+    "time": "22:00",
+    "stage": "Main Stage",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Solaris&backgroundColor=FF006E",
+    "bio": "Pioneer del deep house italiano, suona dai club di Berlino a Ibiza."
+  },
+  {
+    "id": 2,
+    "name": "NOVA",
+    "genre": "Tech House",
+    "day": "Sabato",
+    "time": "00:00",
+    "stage": "Main Stage",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Nova&backgroundColor=8338EC",
+    "bio": "Energia pura sul palco, i suoi set durano fino all'alba."
+  },
+  {
+    "id": 3,
+    "name": "Mila Vega",
+    "genre": "Afro House",
+    "day": "Domenica",
+    "time": "21:00",
+    "stage": "Sunset Stage",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Mila&backgroundColor=FFBE0B",
+    "bio": "Ritmi africani mescolati con house moderna, una vibe unica."
+  },
+  {
+    "id": 4,
+    "name": "KOSS",
+    "genre": "Melodic House",
+    "day": "Domenica",
+    "time": "23:00",
+    "stage": "Main Stage",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Koss&backgroundColor=00F5FF",
+    "bio": "Melodie emozionanti e bassi profondi che fanno vibrare l'anima."
+  },
+  {
+    "id": 5,
+    "name": "Zara Moon",
+    "genre": "Acid House",
+    "day": "Sabato",
+    "time": "20:00",
+    "stage": "Sunset Stage",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Zara&backgroundColor=FF6B6B",
+    "bio": "Una dei nomi piu' caldi della scena acid house europea."
+  },
+  {
+    "id": 6,
+    "name": "PULSE",
+    "genre": "Tribal House",
+    "day": "Domenica",
+    "time": "02:00",
+    "stage": "Main Stage",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Pulse&backgroundColor=06D6A0",
+    "bio": "Closing set leggendari. Se lo perdi, te ne penti per un anno."
+  }
+]
