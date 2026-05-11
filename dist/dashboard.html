@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOVEBEAT — Analytics Dashboard</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #000;
+      --surface: #080808;
+      --card: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.1);
+      --white: #fff;
+      --muted: rgba(255,255,255,0.45);
+      --accent: #ff0101;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 2rem;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,1,1,0.3);
+    }
+
+    .logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .logo span { color: var(--accent); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    #refresh-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: 0.15s ease;
+    }
+    #refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    #last-updated { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── Layout ── */
+    main {
+      padding: 2rem;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+
+    /* ── Stat cards ── */
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.6rem;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-value {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .card-value.text-lg { font-size: 1.5rem; }
+    .card-value.text-md { font-size: 1.2rem; word-break: break-word; }
+
+    .card-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── Two-column section ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Bar chart ── */
+    .chart-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.6rem;
+    }
+
+    .bar-chart { display: grid; gap: 0.7rem; }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 36px;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .bar-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.7);
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bar-track {
+      background: rgba(255,255,255,0.07);
+      border-radius: 999px;
+      height: 8px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.5s ease;
+      min-width: 3px;
+    }
+
+    .bar-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* ── Top pages list ── */
+    .pages-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.6rem;
+    }
+
+    .page-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .page-row:last-child { border-bottom: 0; }
+
+    .page-rank { color: var(--muted); font-size: 0.7rem; margin-right: 0.5rem; }
+    .page-name { text-transform: uppercase; letter-spacing: 0.06em; }
+    .page-views { color: var(--accent); font-weight: 600; white-space: nowrap; }
+
+    /* ── Empty / loading state ── */
+    .empty {
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding: 0.5rem 0;
+    }
+
+    /* ── Dot pulse animation on auto-refresh ── */
+    .pulse {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 0.4rem;
+      animation: pulse 1.5s ease infinite;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.25; }
+    }
+
+    @media (max-width: 700px) {
+      main { padding: 1rem; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LOVE<span>BEAT</span> &mdash; Analytics</div>
+  <div class="header-right">
+    <button id="refresh-btn" onclick="load()">↻ Aggiorna</button>
+    <span id="last-updated">—</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- TODAY STATS -->
+  <p class="section-label"><span class="pulse"></span>Oggi</p>
+  <div class="cards-row">
+    <div class="card">
+      <p class="card-label">Visitatori oggi</p>
+      <div class="card-value" id="stat-visitors">—</div>
+    </div>
+    <div class="card">
+      <p class="card-label">Pagina più vista</p>
+      <div class="card-value text-md" id="stat-top-page">—</div>
+    </div>
+    <div class="card">
+      <p class="card-label">Iscrizioni newsletter</p>
+      <div class="card-value" id="stat-newsletter">—</div>
+    </div>
+    <div class="card">
+      <p class="card-label">Click totali oggi</p>
+      <div class="card-value" id="stat-clicks-today">—</div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="two-col">
+    <div>
+      <p class="section-label">Click per sezione (oggi)</p>
+      <div class="chart-wrap">
+        <div class="bar-chart" id="clicks-chart">
+          <p class="empty">Caricamento...</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="section-label">Pagine più visitate (totale)</p>
+      <div class="pages-wrap">
+        <div id="top-pages">
+          <p class="empty">Caricamento...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALL-TIME STATS -->
+  <p class="section-label">Totale</p>
+  <div class="cards-row">
+    <div class="card">
+      <p class="card-label">Visitatori unici</p>
+      <div class="card-value" id="stat-total-visitors">—</div>
+    </div>
+    <div class="card">
+      <p class="card-label">Tempo medio sessione</p>
+      <div class="card-value text-lg" id="stat-avg-duration">—</div>
+      <p class="card-sub">secondi</p>
+    </div>
+    <div class="card">
+      <p class="card-label">Click totali</p>
+      <div class="card-value" id="stat-total-clicks">—</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function esc(str) {
+    return String(str).replace(/[&<>"']/g, c =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+    );
+  }
+
+  function set(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+
+  async function load() {
+    try {
+      const [daily, stats] = await Promise.all([
+        fetch('/api/analytics/daily').then(r => r.json()),
+        fetch('/api/analytics/stats').then(r => r.json()),
+      ]);
+
+      if (daily.success) {
+        const d = daily.data;
+        set('stat-visitors', d.visitors);
+        set('stat-top-page', d.topPage.toUpperCase());
+        set('stat-newsletter', d.newsletterSignups);
+        set('stat-clicks-today', d.clicks);
+
+        const chartEl = document.getElementById('clicks-chart');
+        const sections = Object.entries(d.clicksBySection).sort((a, b) => b[1] - a[1]);
+        if (sections.length === 0) {
+          chartEl.innerHTML = '<p class="empty">Nessun click ancora oggi.</p>';
+        } else {
+          const max = Math.max(...sections.map(([, v]) => v));
+          chartEl.innerHTML = sections.map(([sec, count]) => `
+            <div class="bar-row">
+              <span class="bar-label">${esc(sec)}</span>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:${Math.round(count / max * 100)}%"></div>
+              </div>
+              <span class="bar-count">${count}</span>
+            </div>
+          `).join('');
+        }
+      }
+
+      if (stats.success) {
+        const s = stats.data;
+        set('stat-total-visitors', s.totalVisitors);
+        set('stat-avg-duration', s.avgSessionDuration);
+        set('stat-total-clicks', s.totalClicks);
+
+        const pagesEl = document.getElementById('top-pages');
+        if (s.topPages.length === 0) {
+          pagesEl.innerHTML = '<p class="empty">Nessuna visita ancora.</p>';
+        } else {
+          pagesEl.innerHTML = s.topPages.slice(0, 8).map(({ page, views }, i) => `
+            <div class="page-row">
+              <span>
+                <span class="page-rank">#${i + 1}</span>
+                <span class="page-name">${esc(page)}</span>
+              </span>
+              <span class="page-views">${views} views</span>
+            </div>
+          `).join('');
+        }
+      }
+
+      document.getElementById('last-updated').textContent =
+        'Aggiornato: ' + new Date().toLocaleTimeString('it-IT');
+    } catch (err) {
+      document.getElementById('last-updated').textContent = 'Errore nel caricamento';
+      console.error(err);
+    }
+  }
+
+  load();
+  setInterval(load, 30000);
+</script>
+
+</body>
+</html>
