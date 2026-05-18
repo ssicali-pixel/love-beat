@@ -9,16 +9,32 @@ export default function About() {
   return (
     <section className="section" id="about">
       <div className="container">
-        <div className="section-header">
-          <p className="section-tag">Chi siamo</p>
+        <header className="section-header">
           <h2 className="section-title">ABOUT<span> US</span></h2>
-          <p className="section-desc">LOVEBEAT è il festival house che porta la musica elettronica nel cuore di Milano.</p>
+        </header>
+
+        <div className="about-intro">
+          <div className="about-claim">
+            CATANIA<br />
+            <span>WITH</span><br />
+            LOVE
+          </div>
+          <p className="about-body">
+            LOVEBEAT nasce dalla passione per la house music e per Catania.
+            Un festival che porta i nomi più grandi della scena internazionale
+            nel cuore della Sicilia — tre palchi, dodici ore di musica continua,
+            e migliaia di persone unite da un unico ritmo.
+            <br /><br />
+            Dal tramonto sull'Etna all'alba sul porto, LOVEBEAT è l'esperienza
+            che ridefinisce il festival estivo in Italia.
+          </p>
         </div>
+
         <div className="about-stats">
           {STATS.map(s => (
             <div className="about-stat" key={s.label}>
               <span className="about-number">{s.number}</span>
-              <p>{s.label}</p>
+              <span className="about-stat-label">{s.label}</span>
             </div>
           ))}
         </div>

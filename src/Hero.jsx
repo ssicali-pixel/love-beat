@@ -27,30 +27,47 @@ export default function Hero() {
 
   return (
     <section className="hero" id="home">
-      <div className="hero-bg" />
-      <div className="hero-content">
-        <img className="hero-logo" src="/fonts/images/Lovebeat.svg" alt="Lovebeat" />
-        <p className="hero-pretitle">14 &mdash; 15 GIUGNO 2026 &bull; MILANO</p>
-        <h1 className="hero-title">HOUSE FESTIVAL</h1>
-        <p className="hero-subtitle">Il festival house che fa battere il cuore della città</p>
-        <div className="countdown">
-          {time.started ? (
-            <p className="festival-started">IL FESTIVAL È INIZIATO!</p>
-          ) : (
-            [['d','Giorni'],['h','Ore'],['m','Minuti'],['s','Secondi']].map(([k, label]) => (
-              <div className="countdown-item" key={k}>
-                <span>{time[k]}</span>
-                <label>{label}</label>
-              </div>
-            ))
-          )}
-        </div>
+      <div className="hero-eyebrow">
+        <span className="hero-eyebrow-text">14 — 15 Giugno 2026</span>
+        <span className="hero-eyebrow-line" />
+        <span className="hero-eyebrow-text">Catania</span>
+        <span className="hero-eyebrow-line" />
+        <span className="hero-eyebrow-text">Catania With Love</span>
+      </div>
+
+      <h1 className="hero-title">
+        Love<br />
+        <span className="hero-title-accent">Beat</span>
+      </h1>
+
+      <div className="hero-bottom">
+        <p className="hero-subtitle">
+          House music festival<br />
+          nel cuore di Catania.<br />
+          Tre palchi · Dodici ore.
+        </p>
+
+        {time.started ? (
+          <p className="festival-started">Il festival è iniziato</p>
+        ) : (
+          <div className="countdown">
+            {[['d', 'GG'], ['h', 'HH'], ['m', 'MM'], ['s', 'SS']].map(([k, lbl], i) => (
+              <>
+                {i > 0 && <span key={`sep-${k}`} className="countdown-sep" aria-hidden="true">:</span>}
+                <div className="countdown-item" key={k}>
+                  <span>{time[k]}</span>
+                  <label>{lbl}</label>
+                </div>
+              </>
+            ))}
+          </div>
+        )}
+
         <div className="hero-btns">
-          <button className="btn-primary" onClick={() => scrollTo('tickets')}>PRENDI IL PASS</button>
-          <button className="btn-outline" onClick={() => scrollTo('lineup')}>SCOPRI LA LINE-UP</button>
+          <button className="btn-primary" onClick={() => scrollTo('tickets')}>Biglietti →</button>
+          <button className="btn-outline" onClick={() => scrollTo('lineup')}>Line-up</button>
         </div>
       </div>
-      <div className="hero-scroll"><span>SCROLL</span><div className="scroll-line" /></div>
     </section>
   );
 }

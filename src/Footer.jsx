@@ -3,16 +3,20 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-top">
-          <img className="footer-logo" src="/fonts/images/Lovebeat.svg" alt="Lovebeat logo" />
-          <p>Il festival che fa battere il cuore di Milano.</p>
+          <img className="footer-logo" src="/fonts/images/Lovebeat.svg" alt="Love Beat" />
+          <p className="footer-tagline">
+            Catania<br />
+            <span>With Love</span>
+          </p>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2026 LOVEBEAT FESTIVAL. Tutti i diritti riservati.</p>
-          <div className="footer-socials">
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="TikTok">TK</a>
-            <a href="#" aria-label="Facebook">FB</a>
-          </div>
+          <p className="footer-copy">© 2026 Love Beat Festival — Tutti i diritti riservati</p>
+          <nav className="footer-socials" aria-label="Social media">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="TikTok">TikTok</a>
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="Resident Advisor">RA</a>
+          </nav>
         </div>
       </div>
     </footer>

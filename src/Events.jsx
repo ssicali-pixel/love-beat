@@ -19,56 +19,83 @@ export default function Events() {
 
   return (
     <>
-      <section className="section" id="lineup">
+      {/* ── LINE-UP ── */}
+      <section className="section section-dark" id="lineup">
         <div className="container">
-          <div className="section-header">
-            <p className="section-tag">Chi suona</p>
+          <header className="section-header">
             <h2 className="section-title">LINE<span>-UP</span></h2>
-            <p className="section-desc">I migliori artisti della scena house mondiale.</p>
-          </div>
-          <div className="filter-tabs">
-            {[['all','Tutti'],['Sabato','Sabato 14'],['Domenica','Domenica 15']].map(([val, label]) => (
-              <button key={val} className={`tab${filter === val ? ' active' : ''}`} onClick={() => setFilter(val)}>{label}</button>
+            <p className="section-desc">I migliori artisti della scena house e techno mondiale.</p>
+          </header>
+
+          <div className="filter-tabs" role="group" aria-label="Filtra per giorno">
+            {[['all','Tutti'],['Sabato','Sab 14'],['Domenica','Dom 15']].map(([val, label]) => (
+              <button
+                key={val}
+                className={`tab${filter === val ? ' active' : ''}`}
+                onClick={() => setFilter(val)}
+                type="button"
+              >
+                {label}
+              </button>
             ))}
           </div>
-          <div className="lineup-grid">
-            {loading && <p className="loading">Caricamento artisti...</p>}
-            {error   && <p className="loading">Errore nel caricamento.</p>}
-            {lineup.map(a => (
-              <div className="artist-card" key={a.name}>
-                <img className="artist-img" src={a.image} alt={a.name} loading="lazy" />
-                <div className="artist-info">
-                  <p className="artist-genre">{a.genre}</p>
-                  <h3 className="artist-name">{a.name}</h3>
-                  <p className="artist-bio">{a.bio}</p>
-                  <div className="artist-meta">
-                    <span className="artist-tag">{a.day}</span>
-                    <span className="artist-tag">{a.time}</span>
-                  </div>
-                </div>
+
+          {loading && <p className="loading">Caricamento artisti…</p>}
+          {error   && <p className="loading">Errore nel caricamento.</p>}
+
+          {!loading && !error && (
+            <>
+              <div className="lineup-table-header" aria-hidden="true">
+                <span className="lineup-col-label">Orario</span>
+                <span className="lineup-col-label">Artista</span>
+                <span className="lineup-col-label">Genere</span>
+                <span className="lineup-col-label">Stage</span>
               </div>
-            ))}
-          </div>
+              <div className="lineup-list" role="list">
+                {lineup.map(a => (
+                  <div className="lineup-row" key={a.name} role="listitem">
+                    <span className="lineup-time">{a.time}</span>
+                    <span className="lineup-name">{a.name}</span>
+                    <span className="lineup-genre">{a.genre}</span>
+                    <span className="lineup-stage">{a.stage}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
-      <section className="section section-dark" id="schedule">
+      {/* ── SCHEDULE ── */}
+      <section className="section" id="schedule">
         <div className="container">
-          <div className="section-header">
-            <p className="section-tag">Quando</p>
+          <header className="section-header">
             <h2 className="section-title">SCHE<span>DULE</span></h2>
-          </div>
-          <div className="schedule-tabs">
+          </header>
+
+          <div className="schedule-tabs" role="group" aria-label="Seleziona giorno">
             {[['Sabato','SAB 14'],['Domenica','DOM 15']].map(([val, label]) => (
-              <button key={val} className={`stab${scheduleDay === val ? ' active' : ''}`} onClick={() => setScheduleDay(val)}>{label}</button>
+              <button
+                key={val}
+                className={`stab${scheduleDay === val ? ' active' : ''}`}
+                onClick={() => setScheduleDay(val)}
+                type="button"
+              >
+                {label}
+              </button>
             ))}
           </div>
-          <div className="schedule-grid">
-            {loading && <p className="loading">Caricamento programma...</p>}
+
+          {loading && <p className="loading">Caricamento programma…</p>}
+
+          <div className="schedule-grid" role="list">
             {schedule.map(a => (
-              <div className="schedule-item" key={a.name + a.time}>
-                <div className="schedule-time">{a.time}</div>
-                <div><div className="schedule-name">{a.name}</div><div className="schedule-genre">{a.genre}</div></div>
+              <div className="schedule-item" key={a.name + a.time} role="listitem">
+                <span className="schedule-time">{a.time}</span>
+                <div>
+                  <div className="schedule-name">{a.name}</div>
+                  <div className="schedule-genre">{a.genre}</div>
+                </div>
                 <span className="schedule-stage">{a.stage}</span>
               </div>
             ))}

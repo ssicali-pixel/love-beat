@@ -1,62 +1,122 @@
 [
   {
     "id": 1,
-    "name": "DJ Solaris",
-    "genre": "Deep House",
+    "name": "Carl Cox",
+    "genre": "Tech House",
     "day": "Sabato",
-    "time": "22:00",
+    "time": "02:00",
     "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Solaris&backgroundColor=FF006E",
-    "bio": "Pioneer del deep house italiano, suona dai club di Berlino a Ibiza."
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=CarlCox&backgroundColor=FF0101",
+    "bio": "La leggenda vivente di Ibiza. Tre deck, energia inesauribile, set che non finiscono mai."
   },
   {
     "id": 2,
-    "name": "NOVA",
-    "genre": "Tech House",
+    "name": "Sasha",
+    "genre": "Progressive House",
     "day": "Sabato",
     "time": "00:00",
     "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Nova&backgroundColor=8338EC",
-    "bio": "Energia pura sul palco, i suoi set durano fino all'alba."
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Sasha&backgroundColor=222222",
+    "bio": "Architetto del progressive house. I suoi set sono viaggi ipnotici senza ritorno."
   },
   {
     "id": 3,
-    "name": "Mila Vega",
-    "genre": "Afro House",
-    "day": "Domenica",
-    "time": "21:00",
-    "stage": "Sunset Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Mila&backgroundColor=FFBE0B",
-    "bio": "Ritmi africani mescolati con house moderna, una vibe unica."
+    "name": "Jamie Jones",
+    "genre": "Tech House",
+    "day": "Sabato",
+    "time": "23:00",
+    "stage": "Underground",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=JamieJones&backgroundColor=333333",
+    "bio": "Fondatore di Paradise Ibiza. Groove profondo e un carisma che travolge ogni dancefloor."
   },
   {
     "id": 4,
-    "name": "KOSS",
-    "genre": "Melodic House",
-    "day": "Domenica",
-    "time": "23:00",
+    "name": "Peggy Gou",
+    "genre": "House",
+    "day": "Sabato",
+    "time": "21:00",
     "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Koss&backgroundColor=00F5FF",
-    "bio": "Melodie emozionanti e bassi profondi che fanno vibrare l'anima."
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=PeggyGou&backgroundColor=444444",
+    "bio": "DJ, producer, icona. La sua house groovy conquista ogni pista da Seoul a Berlino."
   },
   {
     "id": 5,
-    "name": "Zara Moon",
-    "genre": "Acid House",
+    "name": "Âme",
+    "genre": "Deep House",
     "day": "Sabato",
     "time": "20:00",
-    "stage": "Sunset Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Zara&backgroundColor=FF6B6B",
-    "bio": "Una dei nomi piu' caldi della scena acid house europea."
+    "stage": "Sunset Terrace",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=AmeInnervisions&backgroundColor=111111",
+    "bio": "Innervisions. Deep house melodico con radici nel jazz e nell'anima berlinese."
   },
   {
     "id": 6,
-    "name": "PULSE",
-    "genre": "Tribal House",
+    "name": "Seth Troxler",
+    "genre": "Tech House",
+    "day": "Sabato",
+    "time": "22:00",
+    "stage": "Underground",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=SethTroxler&backgroundColor=1a1a1a",
+    "bio": "Figura cult dell'underground globale. Groove unico, visione artistica senza compromessi."
+  },
+  {
+    "id": 7,
+    "name": "John Digweed",
+    "genre": "Progressive House",
+    "day": "Domenica",
+    "time": "23:00",
+    "stage": "Main Stage",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=JohnDigweed&backgroundColor=222222",
+    "bio": "Tre decadi di set leggendari. Il progressive house nella sua forma più pura."
+  },
+  {
+    "id": 8,
+    "name": "Marco Carola",
+    "genre": "Techno",
     "day": "Domenica",
     "time": "02:00",
     "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Pulse&backgroundColor=06D6A0",
-    "bio": "Closing set leggendari. Se lo perdi, te ne penti per un anno."
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=MarcoCarola&backgroundColor=FF0101",
+    "bio": "Napoletano, icona mondiale. Music On è il party più esclusivo di Ibiza."
+  },
+  {
+    "id": 9,
+    "name": "Richie Hawtin",
+    "genre": "Minimal Techno",
+    "day": "Domenica",
+    "time": "00:00",
+    "stage": "Underground",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=RichieHawtin&backgroundColor=0a0a0a",
+    "bio": "Plasticman. Pioniere del minimal techno, innovatore senza confini da trent'anni."
+  },
+  {
+    "id": 10,
+    "name": "Anfisa Letyaga",
+    "genre": "Techno",
+    "day": "Domenica",
+    "time": "22:00",
+    "stage": "Underground",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=AnfisaLetyaga&backgroundColor=1c1c1c",
+    "bio": "Una delle voci più potenti del techno europeo. Set densi, senza mediazioni."
+  },
+  {
+    "id": 11,
+    "name": "Sama' Abdulhadi",
+    "genre": "Techno",
+    "day": "Domenica",
+    "time": "21:00",
+    "stage": "Underground",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=SamaAbdulhadi&backgroundColor=282828",
+    "bio": "Palestinese, globale. La sua musica abbatte confini geografici e culturali."
+  },
+  {
+    "id": 12,
+    "name": "Dixon",
+    "genre": "Deep House",
+    "day": "Domenica",
+    "time": "20:00",
+    "stage": "Sunset Terrace",
+    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=DixonInnervisions&backgroundColor=111111",
+    "bio": "Innervisions. Il suo deep house è una meditazione in movimento al tramonto."
   }
 ]

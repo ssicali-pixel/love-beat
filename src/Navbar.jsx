@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -17,7 +17,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 901px)');
+    const mq = window.matchMedia('(min-width: 701px)');
     const handler = () => { if (mq.matches) setMenuOpen(false); };
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
@@ -33,18 +33,29 @@ export default function Navbar() {
   return (
     <nav className={cls}>
       <button className="nav-logo" onClick={() => scrollTo('home')} type="button" aria-label="Vai alla home">
-        <img src="/fonts/images/Lovebeat.svg" alt="Lovebeat logo" />
+        <img src="/fonts/images/Lovebeat.svg" alt="Love Beat" />
       </button>
-      <ul className="nav-links">
-        <li><a href="#about"   onClick={() => scrollTo('about')}>Chi Siamo</a></li>
-        <li><a href="#lineup"  onClick={() => scrollTo('lineup')}>Line-up</a></li>
-        <li><a href="#tickets" onClick={() => scrollTo('tickets')}>Biglietti</a></li>
-        <li><a href="#gallery" onClick={() => scrollTo('gallery')}>Gallery</a></li>
-        <li><a href="#contact" onClick={() => scrollTo('contact')}>Contatti</a></li>
+
+      <ul className="nav-links" role="list">
+        {[['about','Chi Siamo'],['lineup','Line-up'],['tickets','Biglietti'],['gallery','Gallery'],['contact','Contatti']].map(([id, label]) => (
+          <li key={id}>
+            <a href={`#${id}`} onClick={(e) => { e.preventDefault(); scrollTo(id); }}>{label}</a>
+          </li>
+        ))}
       </ul>
-      <button className="nav-cta" onClick={() => scrollTo('tickets')}>COMPRA ORA</button>
-      <button className="hamburger" aria-label="Apri menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>
-        &#9776;
+
+      <button className="nav-cta" onClick={() => scrollTo('tickets')} type="button">
+        Biglietti
+      </button>
+
+      <button
+        className="hamburger"
+        aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen(v => !v)}
+        type="button"
+      >
+        {menuOpen ? '✕' : '☰'}
       </button>
     </nav>
   );
