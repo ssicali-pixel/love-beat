@@ -1,7 +1,5 @@
 const express = require('express');
 const router  = express.Router();
-const fs      = require('fs');
-const path    = require('path');
 const { router: analyticsRouter, trackEvent } = require('./analytics');
 
 router.use('/analytics', analyticsRouter);
@@ -10,8 +8,7 @@ const subscribers = [];
 const messages    = [];
 const orders      = [];
 
-const LINEUP_PATH = path.join(__dirname, '../data/lineup.json');
-const getLineup   = () => JSON.parse(fs.readFileSync(LINEUP_PATH, 'utf-8'));
+const getLineup = () => require('../data/lineup.json');
 
 // GET full lineup (stages + weekends + artists)
 router.get('/lineup', (req, res) => {
