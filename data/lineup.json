@@ -1,122 +1,269 @@
-[
-  {
-    "id": 1,
-    "name": "Carl Cox",
-    "genre": "Tech House",
-    "day": "Sabato",
-    "time": "02:00",
-    "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=CarlCox&backgroundColor=FF0101",
-    "bio": "La leggenda vivente di Ibiza. Tre deck, energia inesauribile, set che non finiscono mai."
-  },
-  {
-    "id": 2,
-    "name": "Sasha",
-    "genre": "Progressive House",
-    "day": "Sabato",
-    "time": "00:00",
-    "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=Sasha&backgroundColor=222222",
-    "bio": "Architetto del progressive house. I suoi set sono viaggi ipnotici senza ritorno."
-  },
-  {
-    "id": 3,
-    "name": "Jamie Jones",
-    "genre": "Tech House",
-    "day": "Sabato",
-    "time": "23:00",
-    "stage": "Underground",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=JamieJones&backgroundColor=333333",
-    "bio": "Fondatore di Paradise Ibiza. Groove profondo e un carisma che travolge ogni dancefloor."
-  },
-  {
-    "id": 4,
-    "name": "Peggy Gou",
-    "genre": "House",
-    "day": "Sabato",
-    "time": "21:00",
-    "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=PeggyGou&backgroundColor=444444",
-    "bio": "DJ, producer, icona. La sua house groovy conquista ogni pista da Seoul a Berlino."
-  },
-  {
-    "id": 5,
-    "name": "Âme",
-    "genre": "Deep House",
-    "day": "Sabato",
-    "time": "20:00",
-    "stage": "Sunset Terrace",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=AmeInnervisions&backgroundColor=111111",
-    "bio": "Innervisions. Deep house melodico con radici nel jazz e nell'anima berlinese."
-  },
-  {
-    "id": 6,
-    "name": "Seth Troxler",
-    "genre": "Tech House",
-    "day": "Sabato",
-    "time": "22:00",
-    "stage": "Underground",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=SethTroxler&backgroundColor=1a1a1a",
-    "bio": "Figura cult dell'underground globale. Groove unico, visione artistica senza compromessi."
-  },
-  {
-    "id": 7,
-    "name": "John Digweed",
-    "genre": "Progressive House",
-    "day": "Domenica",
-    "time": "23:00",
-    "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=JohnDigweed&backgroundColor=222222",
-    "bio": "Tre decadi di set leggendari. Il progressive house nella sua forma più pura."
-  },
-  {
-    "id": 8,
-    "name": "Marco Carola",
-    "genre": "Techno",
-    "day": "Domenica",
-    "time": "02:00",
-    "stage": "Main Stage",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=MarcoCarola&backgroundColor=FF0101",
-    "bio": "Napoletano, icona mondiale. Music On è il party più esclusivo di Ibiza."
-  },
-  {
-    "id": 9,
-    "name": "Richie Hawtin",
-    "genre": "Minimal Techno",
-    "day": "Domenica",
-    "time": "00:00",
-    "stage": "Underground",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=RichieHawtin&backgroundColor=0a0a0a",
-    "bio": "Plasticman. Pioniere del minimal techno, innovatore senza confini da trent'anni."
-  },
-  {
-    "id": 10,
-    "name": "Anfisa Letyaga",
-    "genre": "Techno",
-    "day": "Domenica",
-    "time": "22:00",
-    "stage": "Underground",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=AnfisaLetyaga&backgroundColor=1c1c1c",
-    "bio": "Una delle voci più potenti del techno europeo. Set densi, senza mediazioni."
-  },
-  {
-    "id": 11,
-    "name": "Sama' Abdulhadi",
-    "genre": "Techno",
-    "day": "Domenica",
-    "time": "21:00",
-    "stage": "Underground",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=SamaAbdulhadi&backgroundColor=282828",
-    "bio": "Palestinese, globale. La sua musica abbatte confini geografici e culturali."
-  },
-  {
-    "id": 12,
-    "name": "Dixon",
-    "genre": "Deep House",
-    "day": "Domenica",
-    "time": "20:00",
-    "stage": "Sunset Terrace",
-    "image": "https://api.dicebear.com/7.x/shapes/svg?seed=DixonInnervisions&backgroundColor=111111",
-    "bio": "Innervisions. Il suo deep house è una meditazione in movimento al tramonto."
-  }
-]
+{
+  "stages": [
+    {
+      "id": "main",
+      "name": "Main Stage",
+      "subtitle": "Piazza del Vulcano",
+      "location": "Fronte Etna, Centro Storico",
+      "capacity": 8000,
+      "soundSystem": "Funktion-One 100kW",
+      "description": "Il palco principale del festival. Ottomila persone, il vulcano come sfondo naturale, headliner che riscrivono la storia del dancefloor. La pietra lavica della piazza risuona di bass dal tramonto all'alba.",
+      "features": ["LED wall 200m²", "Visual mapping sull'Etna", "Open air", "Headliner internazionali"]
+    },
+    {
+      "id": "porto",
+      "name": "Porto Stage",
+      "subtitle": "Porto Vecchio di Catania",
+      "location": "Molo Levante, Fronte Mediterraneo",
+      "capacity": 3500,
+      "soundSystem": "d&b audiotechnik 60kW",
+      "description": "Stage galleggiante sul porto storico di Catania. Il tramonto sul Mediterraneo come visual di apertura, il mare che riflette le luci notturne. Deep house, melodic techno e sonorità più morbide per un'esperienza quasi spirituale.",
+      "features": ["Stage galleggiante", "Tramonto sul Mediterraneo", "Serate sunset speciali", "Fronte mare"]
+    },
+    {
+      "id": "cave",
+      "name": "Cave Stage",
+      "subtitle": "Grotta dei Venti",
+      "location": "Cavità lavica naturale, -12m",
+      "capacity": 800,
+      "soundSystem": "Martin Audio 30kW",
+      "description": "Una cavità lavica naturale sotto il centro storico di Catania. Temperatura costante 18°C, acustica naturale data dalla roccia vulcanica, capienza limitata a 800 persone. Solo i più coraggiosi arrivano qui.",
+      "features": ["Cavità lavica naturale", "Acustica vulcanica unica", "Solo 800 posti", "Techno e sperimentale"]
+    }
+  ],
+  "weekends": [
+    {
+      "id": "w1",
+      "label": "Weekend I",
+      "dates": ["2026-07-11", "2026-07-12"],
+      "dayLabels": ["Sab 11 Lug", "Dom 12 Lug"],
+      "range": "11–12 Luglio 2026"
+    },
+    {
+      "id": "w2",
+      "label": "Weekend II",
+      "dates": ["2026-08-08", "2026-08-09"],
+      "dayLabels": ["Sab 8 Ago", "Dom 9 Ago"],
+      "range": "8–9 Agosto 2026"
+    },
+    {
+      "id": "w3",
+      "label": "Weekend III",
+      "dates": ["2026-09-05", "2026-09-06"],
+      "dayLabels": ["Sab 5 Set", "Dom 6 Set"],
+      "range": "5–6 Settembre 2026"
+    }
+  ],
+  "artists": [
+    {
+      "id": 1, "name": "Peggy Gou", "slug": "peggy-gou",
+      "genre": "House / Electronic", "origin": "Seoul — Berlino",
+      "weekendId": "w1", "date": "2026-07-11", "time": "22:00", "stage": "main", "headliner": false,
+      "bio": "DJ, producer e designer, Peggy Gou è tra le figure più iconiche della scena house globale. Il suo suono ibrido fonde influenze berlinesi con una sensibilità groovy radicata nell'estetica sudcoreana. I suoi set sono celebrazioni: colori, energia e groove inarrestabile.",
+      "tracks": ["Nanana (It Goes Like)", "Starry Night", "Nabi"]
+    },
+    {
+      "id": 2, "name": "Carl Cox", "slug": "carl-cox",
+      "genre": "Tech House", "origin": "Jamaica — Londra",
+      "weekendId": "w1", "date": "2026-07-11", "time": "01:00", "stage": "main", "headliner": true,
+      "bio": "Tre deck, energia inesauribile, trent'anni sul palco. Carl Cox è la leggenda vivente del dancefloor globale. Dal techno al tech house, passando per l'acid house delle origini: nessuno ha plasmato la cultura del club come lui.",
+      "tracks": ["Phuture Bound", "I Want You (Forever)", "Double Exposure"]
+    },
+    {
+      "id": 3, "name": "Âme", "slug": "ame",
+      "genre": "Deep House", "origin": "Berlino",
+      "weekendId": "w1", "date": "2026-07-11", "time": "20:30", "stage": "porto", "headliner": false,
+      "bio": "Frank Wiedemann, metà del duo Âme, è tra le menti più raffinate dell'Innervisions collective. Il suo deep house melodico sfuma le frontiere tra jazz, soul ed elettronica. Al tramonto, il suo suono è una meditazione collettiva.",
+      "tracks": ["Rej", "Pacha Mama", "Sunday"]
+    },
+    {
+      "id": 4, "name": "Jamie Jones", "slug": "jamie-jones",
+      "genre": "Tech House", "origin": "Galles — Ibiza",
+      "weekendId": "w1", "date": "2026-07-11", "time": "23:00", "stage": "porto", "headliner": false,
+      "bio": "Fondatore di Paradise Ibiza, il party più ambito dell'isola bianca. Jamie Jones ha ridefinito il tech house con un groove sensuale e profondo che conquista ogni dancefloor. Gallese di origine, cosmopolita per vocazione.",
+      "tracks": ["Lose My Mind", "Head Like That", "Angel Face"]
+    },
+    {
+      "id": 5, "name": "Seth Troxler", "slug": "seth-troxler",
+      "genre": "Tech House", "origin": "Michigan — Berlino",
+      "weekendId": "w1", "date": "2026-07-11", "time": "22:00", "stage": "cave", "headliner": false,
+      "bio": "Figura cult dell'underground globale, Seth Troxler non fa compromessi. Il suo suono è fisico, politico, visionario. Nativo del Michigan, berlinese per scelta, cosmopolita per necessità.",
+      "tracks": ["Labyrinth", "Lost in a Moment", "Bellissima"]
+    },
+    {
+      "id": 6, "name": "Charlotte de Witte", "slug": "charlotte-de-witte",
+      "genre": "Techno", "origin": "Ghent — Berlino",
+      "weekendId": "w1", "date": "2026-07-12", "time": "01:00", "stage": "main", "headliner": true,
+      "bio": "Belga, rigorosa, inarrestabile. Charlotte de Witte è la voce più potente del techno contemporaneo. I suoi set sono costruzioni architettoniche: ogni elemento al suo posto, ogni build devastante.",
+      "tracks": ["Heartbeat", "The Operator", "Doppler"]
+    },
+    {
+      "id": 7, "name": "Solomun", "slug": "solomun",
+      "genre": "Melodic Techno", "origin": "Sarajevo — Amburgo",
+      "weekendId": "w1", "date": "2026-07-12", "time": "23:00", "stage": "main", "headliner": false,
+      "bio": "DIYNAMIC Records. Il re del melodic techno parla a milioni di cuori. Il suo Destino a Pacha Ibiza è diventato leggenda. Sarajevo, Amburgo, il mondo: Solomun costruisce emozioni una traccia alla volta.",
+      "tracks": ["You Need This", "Fade Away", "Babylon"]
+    },
+    {
+      "id": 8, "name": "Honey Dijon", "slug": "honey-dijon",
+      "genre": "House", "origin": "Chicago — Berlino",
+      "weekendId": "w1", "date": "2026-07-12", "time": "21:00", "stage": "porto", "headliner": false,
+      "bio": "Chicago. Berlino. Il mondo. Honey Dijon porta la house music come atto politico e celebrazione dell'identità. I suoi set sono feste di liberazione: colori, groove, futuro.",
+      "tracks": ["Not About You", "Show Me Love", "Love Is A State Of Mind"]
+    },
+    {
+      "id": 9, "name": "Dixon", "slug": "dixon",
+      "genre": "Deep House", "origin": "Berlino",
+      "weekendId": "w1", "date": "2026-07-12", "time": "19:00", "stage": "porto", "headliner": false,
+      "bio": "Innervisions collective. Set cinematografici al tramonto. Il deep house come narrazione: lento, profondo, necessario. Dixon è un maestro del tempo che si dilata.",
+      "tracks": ["High Life", "Oblivion", "Polymorphism"]
+    },
+    {
+      "id": 10, "name": "Sama' Abdulhadi", "slug": "sama-abdulhadi",
+      "genre": "Techno", "origin": "Ramallah — Berlino",
+      "weekendId": "w1", "date": "2026-07-12", "time": "22:30", "stage": "cave", "headliner": false,
+      "bio": "La prima DJ di fama mondiale nata in Palestina. La sua musica demolisce confini geografici con precisione chirurgica. Techno come atto di resistenza e celebrazione collettiva.",
+      "tracks": ["Hayati", "Come Back To Me", "Perm"]
+    },
+    {
+      "id": 11, "name": "Fred Again..", "slug": "fred-again",
+      "genre": "Electronic", "origin": "Londra",
+      "weekendId": "w2", "date": "2026-08-08", "time": "01:00", "stage": "main", "headliner": true,
+      "bio": "Il producer inglese più acclamato dell'era moderna. I suoi live set hanno ridefinito cosa significa un concerto di musica elettronica. Emozione, frequenze e connessione umana come manifesto.",
+      "tracks": ["Delilah (pull me out of this)", "Billie (loving me)", "Jungle"]
+    },
+    {
+      "id": 12, "name": "Sasha", "slug": "sasha",
+      "genre": "Progressive House", "origin": "Bangor — Londra",
+      "weekendId": "w2", "date": "2026-08-08", "time": "23:00", "stage": "main", "headliner": false,
+      "bio": "Architetto del progressive house da tre decadi. I set di Sasha sono architetture sonore: lunghissimi, ipnotici, trasformatori. Un maestro del viaggio senza fine.",
+      "tracks": ["Xpander", "Airdrawndagger", "Mongoose"]
+    },
+    {
+      "id": 13, "name": "Tale Of Us", "slug": "tale-of-us",
+      "genre": "Melodic Techno", "origin": "Sicilia — Berlino",
+      "weekendId": "w2", "date": "2026-08-08", "time": "22:00", "stage": "porto", "headliner": false,
+      "bio": "Carmine Conte e Matteo Milleri. Afterlife Records. Due siciliani hanno costruito uno dei label più influenti del melodic techno mondiale. Tornano a casa per SOUTH CALLING.",
+      "tracks": ["Closer", "Interlude", "The Calling"]
+    },
+    {
+      "id": 14, "name": "Floating Points", "slug": "floating-points",
+      "genre": "Electronic", "origin": "Manchester — Londra",
+      "weekendId": "w2", "date": "2026-08-08", "time": "20:00", "stage": "porto", "headliner": false,
+      "bio": "Sam Shepherd. Tra jazz, elettronica e musica classica. Un talento che sfida ogni categoria e definisce una propria grammatica sonora del tutto originale.",
+      "tracks": ["Silhouettes", "Nespole", "Birth4000"]
+    },
+    {
+      "id": 15, "name": "DJ Tennis", "slug": "dj-tennis",
+      "genre": "Tech House", "origin": "Roma — Ibiza",
+      "weekendId": "w2", "date": "2026-08-08", "time": "23:30", "stage": "cave", "headliner": false,
+      "bio": "Life and Death Records. Romano, ibizero, globale. Il tech house di DJ Tennis ha una sensibilità melodica inconfondibile che lo separa da ogni contemporaneo.",
+      "tracks": ["Ufology", "Cordoba", "The Outer Limits"]
+    },
+    {
+      "id": 16, "name": "Bicep", "slug": "bicep",
+      "genre": "Electronic / Rave", "origin": "Belfast — Londra",
+      "weekendId": "w2", "date": "2026-08-09", "time": "01:00", "stage": "main", "headliner": true,
+      "bio": "Matt e Andy. Belfast. Le loro melodie ti spezzano il cuore su un soundsystem da guerra. Il duo britannico ha ridefinito la musica rave per una generazione intera.",
+      "tracks": ["Glue", "Just", "Apricots"]
+    },
+    {
+      "id": 17, "name": "Marco Carola", "slug": "marco-carola",
+      "genre": "Techno", "origin": "Napoli",
+      "weekendId": "w2", "date": "2026-08-09", "time": "23:00", "stage": "main", "headliner": false,
+      "bio": "Napoletano, icona mondiale. Music On a Ibiza è il party più esclusivo del pianeta. Marco Carola porta il techno italiano al suo apice: preciso, inesorabile, totale.",
+      "tracks": ["Believe", "Musica e Parole", "Bad Boy"]
+    },
+    {
+      "id": 18, "name": "John Digweed", "slug": "john-digweed",
+      "genre": "Progressive House", "origin": "Hastings — Londra",
+      "weekendId": "w2", "date": "2026-08-09", "time": "22:00", "stage": "porto", "headliner": false,
+      "bio": "Tre decadi di set leggendari. John Digweed è il progressive house nella sua forma più pura e duratura. Una voce che non tramonta mai.",
+      "tracks": ["Warung Nights", "Live In Brooklyn", "Transitions"]
+    },
+    {
+      "id": 19, "name": "Anfisa Letyaga", "slug": "anfisa-letyaga",
+      "genre": "Techno", "origin": "Mosca — Berlino",
+      "weekendId": "w2", "date": "2026-08-09", "time": "21:00", "stage": "cave", "headliner": false,
+      "bio": "Una delle voci più convincenti del techno europeo contemporaneo. I set di Anfisa Letyaga sono strutture dense, architettoniche, senza compromessi.",
+      "tracks": ["Where", "Kisa", "Tell Me"]
+    },
+    {
+      "id": 20, "name": "Richie Hawtin", "slug": "richie-hawtin",
+      "genre": "Minimal Techno", "origin": "Windsor — Berlino",
+      "weekendId": "w2", "date": "2026-08-09", "time": "23:30", "stage": "cave", "headliner": false,
+      "bio": "Plasticman. Pioniere del minimal techno da trent'anni, Richie Hawtin ha sempre posto tecnologia e visione artistica al centro della sua ricerca. Un intellettuale del dancefloor.",
+      "tracks": ["Minus Orange", "DE9: Transitions", "CLOSE"]
+    },
+    {
+      "id": 21, "name": "Fisher", "slug": "fisher",
+      "genre": "Tech House", "origin": "Sydney",
+      "weekendId": "w3", "date": "2026-09-05", "time": "01:00", "stage": "main", "headliner": true,
+      "bio": "Darren Jolly. Australiano, fisico, inarrestabile. Fisher ha portato il tech house a una dimensione quasi atletica: ogni drop è una scarica di adrenalina pura.",
+      "tracks": ["Losing It", "You Little Beauty", "Atmosphere"]
+    },
+    {
+      "id": 22, "name": "Adam Beyer", "slug": "adam-beyer",
+      "genre": "Techno", "origin": "Stoccolma",
+      "weekendId": "w3", "date": "2026-09-05", "time": "23:00", "stage": "main", "headliner": false,
+      "bio": "Drumcode Records. Stoccolma. Il techno più preciso e inesorabile che esista. Adam Beyer è un metronomo umano al servizio del dancefloor.",
+      "tracks": ["Run", "Unlearn", "Teach Me"]
+    },
+    {
+      "id": 23, "name": "Four Tet", "slug": "four-tet",
+      "genre": "Electronic", "origin": "Londra",
+      "weekendId": "w3", "date": "2026-09-05", "time": "20:30", "stage": "porto", "headliner": false,
+      "bio": "Kieran Hebden. Tra folk, jazz, musica classica ed elettronica club. Ogni set di Four Tet è un'esperienza personale e collettiva insieme, irripetibile.",
+      "tracks": ["Angel Echoes", "Pyramid", "My Angel Rocks Back And Forth"]
+    },
+    {
+      "id": 24, "name": "Moderat", "slug": "moderat",
+      "genre": "Electronic", "origin": "Berlino",
+      "weekendId": "w3", "date": "2026-09-05", "time": "22:30", "stage": "porto", "headliner": false,
+      "bio": "Apparat + Modeselektor. Il live dei Moderat trasforma il concerto di musica elettronica in esperienza cinematografica totale. Berlino nel cuore della Sicilia.",
+      "tracks": ["A New Error", "Bad Kingdom", "Eating Hooks"]
+    },
+    {
+      "id": 25, "name": "Objekt", "slug": "objekt",
+      "genre": "Techno", "origin": "Berlino",
+      "weekendId": "w3", "date": "2026-09-05", "time": "22:00", "stage": "cave", "headliner": false,
+      "bio": "TJ Hertz. Berlino. Techno con profondità concettuale e fisicità senza pari. I set di Objekt costruiscono tensione in modo lento, inesorabile, totale.",
+      "tracks": ["Agnes Apparatus", "Flatland", "One Fell Swoop"]
+    },
+    {
+      "id": 26, "name": "Jamie XX", "slug": "jamie-xx",
+      "genre": "House / Electronic", "origin": "Londra",
+      "weekendId": "w3", "date": "2026-09-06", "time": "01:00", "stage": "main", "headliner": true,
+      "bio": "Produttore dei The xx, artista solista di culto. Jamie XX usa la musica da club come forma d'arte pura: ogni disco è un manifesto di bellezza silenziosa e devastante.",
+      "tracks": ["Gosh", "Loud Places", "In Colour"]
+    },
+    {
+      "id": 27, "name": "Amelie Lens", "slug": "amelie-lens",
+      "genre": "Techno", "origin": "Antwerpen",
+      "weekendId": "w3", "date": "2026-09-06", "time": "23:30", "stage": "cave", "headliner": false,
+      "bio": "LENSKE Records. Antwerp. Techno belga di rara potenza. Amelie Lens costruisce energia in modo inarrestabile: i suoi set non lasciano tregua, mai.",
+      "tracks": ["Exhale", "Forever & Ever", "Heat"]
+    },
+    {
+      "id": 28, "name": "Eris Drew", "slug": "eris-drew",
+      "genre": "Ecstatic Dance", "origin": "Chicago",
+      "weekendId": "w3", "date": "2026-09-06", "time": "21:00", "stage": "cave", "headliner": false,
+      "bio": "Chicago. I set di Eris Drew fondono house, rave e spiritualità in rituali collettivi trascendenti. Il dancefloor come luogo sacro, la musica come cerimonia.",
+      "tracks": ["Quivering in Time", "Do It Right", "The Mirage"]
+    },
+    {
+      "id": 29, "name": "Jon Hopkins", "slug": "jon-hopkins",
+      "genre": "Electronic", "origin": "Londra",
+      "weekendId": "w3", "date": "2026-09-06", "time": "21:30", "stage": "porto", "headliner": false,
+      "bio": "Compositore e producer. Tra ambient, techno e musica moderna, Jon Hopkins crea live set immersivi che trasportano il pubblico in luoghi interiori inesplorati.",
+      "tracks": ["Emerald Rush", "Open Eye Signal", "Light Through The Veins"]
+    },
+    {
+      "id": 30, "name": "Konstantin", "slug": "konstantin",
+      "genre": "Tech House", "origin": "Berlino",
+      "weekendId": "w3", "date": "2026-09-06", "time": "23:30", "stage": "porto", "headliner": false,
+      "bio": "Il tech house berlinese nella sua forma più essenziale e intellettuale. Ogni set di Konstantin è un'esplorazione del groove come principio matematico.",
+      "tracks": ["Disco Tool", "Let Me Know", "Freude"]
+    }
+  ]
+}

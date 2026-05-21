@@ -3,20 +3,18 @@ import Navbar   from './Navbar';
 import Hero     from './Hero';
 import About    from './About';
 import Events   from './Events';
-import Areas    from './Areas';
-import Tickets  from './Tickets';
 import Gallery  from './Gallery';
 import Partners from './Partners';
 import Ratings  from './Ratings';
 import Contact  from './Contact';
 import Footer   from './Footer';
+import { LangProvider } from './LangContext';
 import { trackPage, trackClick } from './analytics';
 
-const SECTION_IDS = ['home', 'about', 'lineup', 'schedule', 'areas', 'tickets', 'gallery', 'partners', 'ratings', 'contact'];
+const SECTION_IDS = ['home', 'about', 'lineup', 'gallery', 'partners', 'ratings', 'contact'];
 
 export default function App() {
   useEffect(() => {
-    // Track section visibility
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -30,9 +28,8 @@ export default function App() {
       if (el) observer.observe(el);
     });
 
-    // Track button/link clicks by section via event delegation
     function handleClick(e) {
-      const target = e.target.closest('button, a');
+      const target  = e.target.closest('button, a');
       if (!target) return;
       const section = target.closest('section[id]');
       if (section) trackClick(section.id);
@@ -46,18 +43,16 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <LangProvider>
       <Navbar />
       <Hero />
       <About />
       <Events />
-      <Areas />
-      <Tickets />
       <Gallery />
       <Partners />
       <Ratings />
       <Contact />
       <Footer />
-    </>
+    </LangProvider>
   );
 }

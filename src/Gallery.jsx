@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLang } from './LangContext';
 
 const BASE = 'https://images.unsplash.com/photo-';
 const Q    = '?auto=format&fit=crop&w=800&q=80';
@@ -14,6 +15,7 @@ const ITEMS = [
 ].map(({ id, alt }) => ({ src: BASE + id + Q, full: BASE + id + QL, alt }));
 
 export default function Gallery() {
+  const { t } = useLang();
   const [lightbox, setLightbox] = useState(null);
 
   return (
@@ -31,7 +33,7 @@ export default function Gallery() {
               onClick={() => setLightbox(item)}
               role="button"
               tabIndex={0}
-              aria-label={`Apri immagine: ${item.alt}`}
+              aria-label={`${t.gallery.openAria} ${item.alt}`}
               onKeyDown={e => e.key === 'Enter' && setLightbox(item)}
             >
               <img src={item.src} alt={item.alt} loading="lazy" />
@@ -51,7 +53,7 @@ export default function Gallery() {
           aria-modal="true"
           aria-label={lightbox.alt}
         >
-          <button className="lightbox-close" aria-label="Chiudi" onClick={() => setLightbox(null)} type="button">
+          <button className="lightbox-close" aria-label={t.gallery.closeAria} onClick={() => setLightbox(null)} type="button">
             ✕
           </button>
           <img src={lightbox.full} alt={lightbox.alt} />

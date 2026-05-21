@@ -1,33 +1,15 @@
-const RATINGS = [
-  {
-    name: 'Marco R.',
-    rating: 5,
-    text: 'La migliore esperienza musicale che abbia mai vissuto in Sicilia. Un festival vero, non una sagra.',
-    date: '2025',
-  },
-  {
-    name: 'Sofia K.',
-    rating: 5,
-    text: 'Sound system da brividi, lineup strepitosa e Catania come sfondo. Non esiste posto migliore.',
-    date: '2025',
-  },
-  {
-    name: 'Andrea M.',
-    rating: 5,
-    text: "Avevo visto Carl Cox dieci volte. Mai come qui, alle 3 di notte con l'Etna sullo sfondo.",
-    date: '2025',
-  },
-];
+import { useLang } from './LangContext';
 
-function Stars({ n }) {
+function Stars({ n, aria }) {
   return (
-    <div className="rating-stars" aria-label={`${n} stelle su 5`}>
+    <div className="rating-stars" aria-label={aria}>
       {'★'.repeat(n)}{'☆'.repeat(5 - n)}
     </div>
   );
 }
 
 export default function Ratings() {
+  const { t } = useLang();
   return (
     <section className="section section-dark" id="ratings">
       <div className="container">
@@ -36,9 +18,9 @@ export default function Ratings() {
         </header>
 
         <div className="ratings-grid">
-          {RATINGS.map(r => (
+          {t.ratings.reviews.map(r => (
             <div className="rating-card" key={r.name}>
-              <Stars n={r.rating} />
+              <Stars n={r.rating} aria={t.ratings.starsAria(r.rating)} />
               <p className="rating-text">"{r.text}"</p>
               <div className="rating-author">
                 <strong>{r.name}</strong>
