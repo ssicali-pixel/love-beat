@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const { requireDashboardToken } = require('../middleware/security');
+const { sanitizeString, isPlainObject } = require('../middleware/validate');
 
 const events = [];
 
@@ -18,16 +20,23 @@ function todayPrefix() {
 
 // POST /api/analytics/track
 router.post('/track', (req, res) => {
-  const { page, action, sessionId, timestamp } = req.body;
-  if (!page || !action) {
+  if (!isPlainObject(req.body))
+    return res.status(400).json({ success: false, message: 'Richiesta non valida.' });
+
+  const page   = sanitizeString(req.body.page,   { max: 64 });
+  const action = sanitizeString(req.body.action, { max: 64 });
+  if (!page || !action)
     return res.status(400).json({ success: false, message: 'page e action obbligatori.' });
-  }
+
+  const sessionId = sanitizeString(req.body.sessionId, { max: 64 }) || 'anon';
+  const timestamp = sanitizeString(req.body.timestamp, { max: 40 }) || new Date().toISOString();
+
   trackEvent({ page, action, sessionId, timestamp });
   res.json({ success: true });
 });
 
-// GET /api/analytics/stats
-router.get('/stats', (req, res) => {
+// GET /api/analytics/stats  (read — gated behind DASHBOARD_TOKEN)
+router.get('/stats', requireDashboardToken, (req, res) => {
   const uniqueVisitors = new Set(events.map(e => e.sessionId)).size;
 
   const pageCounts = {};
@@ -61,8 +70,8 @@ router.get('/stats', (req, res) => {
   });
 });
 
-// GET /api/analytics/daily
-router.get('/daily', (req, res) => {
+// GET /api/analytics/daily  (read — gated behind DASHBOARD_TOKEN)
+router.get('/daily', requireDashboardToken, (req, res) => {
   const today = todayPrefix();
   const todayEvents = events.filter(e => e.timestamp.startsWith(today));
 

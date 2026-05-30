@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLang } from './LangContext';
+import SouthCallingLogo from './SouthCallingLogo';
 
 const LANG_CSS = `
   .nav-lang-wrap {
@@ -178,7 +179,7 @@ export default function Navbar() {
       <style>{LANG_CSS}</style>
       <nav className={cls}>
         <button className="nav-logo" onClick={() => scrollTo('home')} type="button" aria-label={t.nav.ariaHome}>
-          <img src="/fonts/images/Lovebeat.svg" alt="Love Beat" />
+          <SouthCallingLogo style={{ height: '52px', width: 'auto' }} />
         </button>
 
         <ul className="nav-links" role="list">

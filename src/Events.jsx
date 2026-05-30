@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLang } from './LangContext';
+import { TAPPE, STAGES } from './data/festival';
 
 // ── Shared data ────────────────────────────────────────────────────────────
 
@@ -33,63 +34,106 @@ const CSS = `
   /* ══ WEEKEND SELECTOR ══════════════════════════════════════════════════ */
   .ev-weekends {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     margin-bottom: 2.5rem;
   }
   .ev-wk-btn {
     background: #fff;
-    border: 1px solid rgba(26,120,200,0.20);
-    padding: 20px 24px;
+    border: 1.5px solid rgba(26,120,200,0.18);
+    padding: 28px 28px 24px;
     text-align: left;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.42s, box-shadow 0.42s, transform 0.42s cubic-bezier(0.16,1,0.3,1);
   }
+  /* fill sweep on active */
   .ev-wk-btn::before {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
+    inset: 0;
     background: #FF1F3D;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.52s cubic-bezier(0.16,1,0.3,1);
+    z-index: 0;
   }
-  .ev-wk-btn:hover::before,
-  .ev-wk-btn.ev-wk-active::before { transform: scaleX(1); }
+  .ev-wk-btn.ev-wk-active::before { transform: scaleY(1); }
+  /* large decorative number */
+  .ev-wk-btn::after {
+    content: attr(data-n);
+    position: absolute;
+    right: 14px; bottom: -16px;
+    font-family: var(--font-display);
+    font-size: 120px;
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    color: rgba(26,120,200,0.055);
+    pointer-events: none;
+    z-index: 0;
+    transition: color 0.42s;
+  }
+  .ev-wk-btn > * { position: relative; z-index: 1; }
+  .ev-wk-btn:hover:not(.ev-wk-active) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(26,120,200,0.13);
+    border-color: rgba(26,120,200,0.35);
+  }
   .ev-wk-btn.ev-wk-active {
     border-color: #FF1F3D;
-    box-shadow: 0 4px 24px rgba(26,120,200,0.12);
+    box-shadow: 0 10px 42px rgba(255,31,61,0.28);
+    transform: translateY(-2px);
   }
+  .ev-wk-btn.ev-wk-active::after { color: rgba(255,255,255,0.07); }
+  .ev-wk-btn.ev-wk-active .ev-wk-label { color: #FFFFFF; }
+  .ev-wk-btn.ev-wk-active .ev-wk-range { color: rgba(255,255,255,0.68); }
+  .ev-wk-btn.ev-wk-active .ev-wk-count { color: rgba(255,255,255,0.52); }
+  .ev-wk-btn.ev-wk-active .ev-wk-count::before { background: rgba(255,255,255,0.65); }
+
   .ev-wk-label {
     font-family: var(--font-display);
-    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-size: clamp(1.2rem, 2vw, 1.75rem);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: -0.02em;
     color: #1A78C8;
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+    transition: color 0.42s;
   }
   .ev-wk-range {
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(26,120,200,0.45);
+    color: rgba(26,120,200,0.65);
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
+    transition: color 0.42s;
   }
   .ev-wk-count {
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 0.625rem;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(26,120,200,0.35);
+    color: rgba(26,120,200,0.48);
+    transition: color 0.42s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .ev-wk-count::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #FF1F3D;
+    flex-shrink: 0;
+    transition: background 0.42s;
   }
 
   /* ══ DAY / STAGE CONTROLS ════════════════════════════════════════════ */
@@ -753,7 +797,10 @@ const CSS = `
   .pm-success .pm-submit { margin-top: 24px; justify-content: center; }
 
   /* ══ RESPONSIVE ══════════════════════════════════════════════════════ */
-  @media (max-width: 860px) {
+  @media (max-width: 1080px) {
+    .ev-weekends { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
     .ev-weekends { grid-template-columns: 1fr; gap: 8px; }
   }
   @media (max-width: 760px) {
@@ -785,7 +832,9 @@ const CSS = `
   #lineup { position: relative; overflow: hidden; isolation: isolate; }
   .ev-waves {
     position: absolute;
-    inset: 0;
+    top: clamp(260px, 32vh, 400px);   /* sotto il titolo LINE-UP, non lo attraversa */
+    left: 0; right: 0;
+    height: 1000px;                   /* altezza fissa: non si stira al cambio giorno */
     z-index: -1;
     pointer-events: none;
     clip-path: inset(0 calc((1 - var(--wave-prog, 0)) * 100%) 0 0);
@@ -1066,22 +1115,17 @@ function ArtistModal({ artist, stages, weekend, onClose, te, ts, weekends }) {
 // ── Main component ─────────────────────────────────────────────────────────
 
 export default function Events() {
-  const { t, weekends } = useLang();
+  const { t } = useLang();
   const te = t.events;
   const ts = t.tickets;
-  const [data,     setData]     = useState(null);
-  const [loading,  setLoading]  = useState(true);
-  const [weekendId,setWeekendId]= useState('w1');
+  // Sorgente unica dei dati: le quattro tappe del festival itinerante.
+  const weekends = TAPPE;
+  const data = { artists: TAPPE.flatMap(tp => tp.artists), stages: STAGES };
+  const loading = false;
+  const [weekendId,setWeekendId]= useState(TAPPE[0].id);
   const [dayIdx,   setDayIdx]   = useState(0);
   const [stageFilter, setStageFilter] = useState('all');
   const [selectedArtist, setSelectedArtist] = useState(null);
-
-  useEffect(() => {
-    fetch('/api/lineup')
-      .then(r => r.json())
-      .then(({ data: d }) => { setData(d); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, []);
 
   const sectionRef = useRef(null);
   const wavesRef   = useRef(null);
@@ -1130,7 +1174,7 @@ export default function Events() {
 
   const weekend = weekends.find(w => w.id === weekendId) || weekends[0];
   const artistWeekend = selectedArtist
-    ? (weekends.find(w => w.id === selectedArtist.weekendId) || weekend)
+    ? (weekends.find(w => w.id === selectedArtist.tappaId) || weekend)
     : weekend;
   const date    = weekend.dates[dayIdx];
 
@@ -1148,7 +1192,7 @@ export default function Events() {
 
       <section className="section section-dark" id="lineup" ref={sectionRef}>
         <div className="ev-waves" ref={wavesRef}>
-          <svg className="ev-wave-svg" viewBox="0 0 1440 2000" preserveAspectRatio="none" aria-hidden="true">
+          <svg className="ev-wave-svg" viewBox="0 0 1440 2000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             {WAVE_PATHS.map((d, i) => (
               <path key={i} className="ev-wave" d={d} />
             ))}
@@ -1163,10 +1207,11 @@ export default function Events() {
 
           {/* ── Weekend selector ── */}
           <div className="ev-weekends">
-            {weekends.map(w => {
-              const cnt = (data?.artists ?? []).filter(a => a.weekendId === w.id).length;
+            {weekends.map((w, wIdx) => {
+              const cnt = (data?.artists ?? []).filter(a => a.tappaId === w.id).length;
               return (
                 <button key={w.id} type="button"
+                  data-n={String(wIdx + 1).padStart(2, '0')}
                   className={`ev-wk-btn${weekendId === w.id ? ' ev-wk-active' : ''}`}
                   onClick={() => { setWeekendId(w.id); setDayIdx(0); setStageFilter('all'); }}
                 >

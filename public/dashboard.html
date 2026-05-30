@@ -235,7 +235,7 @@
 <header>
   <div class="logo">LOVE<span>BEAT</span> &mdash; Analytics</div>
   <div class="header-right">
-    <button id="refresh-btn" onclick="load()">↻ Aggiorna</button>
+    <button id="refresh-btn">↻ Aggiorna</button>
     <span id="last-updated">—</span>
   </div>
 </header>
@@ -303,83 +303,7 @@
 
 </main>
 
-<script>
-  function esc(str) {
-    return String(str).replace(/[&<>"']/g, c =>
-      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
-    );
-  }
-
-  function set(id, val) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = val;
-  }
-
-  async function load() {
-    try {
-      const [daily, stats] = await Promise.all([
-        fetch('/api/analytics/daily').then(r => r.json()),
-        fetch('/api/analytics/stats').then(r => r.json()),
-      ]);
-
-      if (daily.success) {
-        const d = daily.data;
-        set('stat-visitors', d.visitors);
-        set('stat-top-page', d.topPage.toUpperCase());
-        set('stat-newsletter', d.newsletterSignups);
-        set('stat-clicks-today', d.clicks);
-
-        const chartEl = document.getElementById('clicks-chart');
-        const sections = Object.entries(d.clicksBySection).sort((a, b) => b[1] - a[1]);
-        if (sections.length === 0) {
-          chartEl.innerHTML = '<p class="empty">Nessun click ancora oggi.</p>';
-        } else {
-          const max = Math.max(...sections.map(([, v]) => v));
-          chartEl.innerHTML = sections.map(([sec, count]) => `
-            <div class="bar-row">
-              <span class="bar-label">${esc(sec)}</span>
-              <div class="bar-track">
-                <div class="bar-fill" style="width:${Math.round(count / max * 100)}%"></div>
-              </div>
-              <span class="bar-count">${count}</span>
-            </div>
-          `).join('');
-        }
-      }
-
-      if (stats.success) {
-        const s = stats.data;
-        set('stat-total-visitors', s.totalVisitors);
-        set('stat-avg-duration', s.avgSessionDuration);
-        set('stat-total-clicks', s.totalClicks);
-
-        const pagesEl = document.getElementById('top-pages');
-        if (s.topPages.length === 0) {
-          pagesEl.innerHTML = '<p class="empty">Nessuna visita ancora.</p>';
-        } else {
-          pagesEl.innerHTML = s.topPages.slice(0, 8).map(({ page, views }, i) => `
-            <div class="page-row">
-              <span>
-                <span class="page-rank">#${i + 1}</span>
-                <span class="page-name">${esc(page)}</span>
-              </span>
-              <span class="page-views">${views} views</span>
-            </div>
-          `).join('');
-        }
-      }
-
-      document.getElementById('last-updated').textContent =
-        'Aggiornato: ' + new Date().toLocaleTimeString('it-IT');
-    } catch (err) {
-      document.getElementById('last-updated').textContent = 'Errore nel caricamento';
-      console.error(err);
-    }
-  }
-
-  load();
-  setInterval(load, 30000);
-</script>
+<script src="/dashboard.js"></script>
 
 </body>
 </html>

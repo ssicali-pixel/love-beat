@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLang } from './LangContext';
 
 const PARTNERS = [
   { name: 'Resident Advisor', label: 'Media partner',     logo: '/logos/channels4_profile.jpg',                               url: '#' },
@@ -6,14 +7,13 @@ const PARTNERS = [
   { name: 'Pioneer DJ',       label: 'Tech partner',      logo: '/logos/pioneer-seeklogo.png',                                url: '#' },
   { name: 'Absolut',          label: 'Beverage sponsor',  logo: '/logos/absolut-vodka-515.png',                               url: '#' },
   { name: 'Red Bull',         label: 'Energy partner',    logo: '/logos/redbullenergydrink.svg',                              url: '#' },
-  { name: 'Comune di Catania',label: 'Institutional',     logo: '/logos/comune-catania-digitalizza-segnalazioni-cittadini.jpg', url: '#' },
 ];
 
-/* pattern larghezze/allineamento — si ripete ogni 3 card */
+/* card uniformi e allineate — solo la direzione d'ingresso alterna */
 const LAYOUT = [
-  { w: '90%', align: 'flex-start', from: -1 },  // entra da sinistra
-  { w: '75%', align: 'flex-end',   from:  1 },  // entra da destra
-  { w: '82%', align: 'flex-start', from: -1 },  // entra da sinistra
+  { w: '100%', align: 'stretch', from: -1 },  // entra da sinistra
+  { w: '100%', align: 'stretch', from:  1 },  // entra da destra
+  { w: '100%', align: 'stretch', from: -1 },  // entra da sinistra
 ];
 
 const CSS = `
@@ -37,23 +37,36 @@ const CSS = `
     position: relative;
     overflow: hidden;
     text-decoration: none;
-    cursor: default;
+    cursor: pointer;
     opacity: 0;
     transition:
       transform  0.9s cubic-bezier(0.16, 1, 0.3, 1),
       opacity    0.9s cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 0.3s ease;
+      box-shadow 0.35s ease;
     will-change: transform, opacity;
   }
 
-  /* striscia rossa a sinistra */
+  /* striscia rossa sinistra */
   .pa-card::before {
     content: '';
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 5px;
     background: #E00000;
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+  }
+
+  /* sweep di riempimento */
+  .pa-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #CC0000;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
   }
 
   .pa-card.pa-from-l { transform: translateX(-115%) rotate(-1.5deg); }
@@ -64,10 +77,15 @@ const CSS = `
     transform: translateX(0) rotate(0deg);
   }
   .pa-card.pa-in:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(160,0,0,0.18);
+    transform: translateY(-5px);
+    box-shadow: 0 22px 64px rgba(160,0,0,0.32);
   }
-  .pa-card.pa-in:hover::before { width: 10px; }
+  .pa-card.pa-in:hover::after  { transform: scaleX(1); }
+  .pa-card.pa-in:hover::before { width: 0; }
+  .pa-card.pa-in:hover .pa-label { color: rgba(255,255,255,0.72); }
+  .pa-card.pa-in:hover .pa-name  { color: #FFFFFF; }
+  .pa-card.pa-in:hover .pa-idx   { color: rgba(255,255,255,0.06); }
+  .pa-card.pa-in:hover .pa-logo  { background: rgba(255,255,255,0.18); }
 
   /* ── numero decorativo gigante ── */
   .pa-idx {
@@ -83,6 +101,8 @@ const CSS = `
     letter-spacing: -0.04em;
     user-select: none;
     pointer-events: none;
+    z-index: 1;
+    transition: color 0.45s;
   }
 
   /* ── area logo ── */
@@ -96,6 +116,8 @@ const CSS = `
     background: #F7F4F0;
     border-radius: 6px;
     margin-left: 28px;
+    position: relative; z-index: 1;
+    transition: background 0.45s;
   }
   .pa-logo img {
     max-width: 140px;
@@ -108,6 +130,7 @@ const CSS = `
   .pa-info {
     margin-left: 48px;
     flex: 1;
+    position: relative; z-index: 1;
   }
   .pa-label {
     font-family: var(--font-body);
@@ -117,6 +140,7 @@ const CSS = `
     text-transform: uppercase;
     color: #E00000;
     line-height: 1;
+    transition: color 0.45s;
   }
   .pa-name {
     font-family: var(--font-display);
@@ -127,11 +151,16 @@ const CSS = `
     line-height: 1;
     text-transform: uppercase;
     letter-spacing: -0.02em;
+    transition: color 0.45s;
   }
 
   /* ── mobile ── */
   @media (max-width: 600px) {
-    .pa-card { height: auto; min-height: 130px; padding: 28px 20px 28px 36px; }
+    .pa-card {
+      height: auto; min-height: 130px; padding: 28px 20px 28px 36px;
+      width: 100% !important;
+      align-self: stretch !important;
+    }
     .pa-logo { width: 120px; height: 80px; margin-left: 20px; }
     .pa-logo img { max-width: 100px; max-height: 60px; }
     .pa-info { margin-left: 24px; }
@@ -176,6 +205,7 @@ function LogoFallback({ name, idx }) {
 }
 
 export default function Partners() {
+  const { t }    = useLang();
   const listRef  = useRef(null);
   const cardsRef = useRef([]);
   const [imgErrors, setImgErrors] = useState(() => Array(PARTNERS.length).fill(false));
@@ -206,8 +236,10 @@ export default function Partners() {
 
       <section className="section" id="partners">
         <div className="container">
-          <header className="section-header">
+          <header className="section-header sh-v">
+            <span className="section-tag">{t.partners.label}</span>
             <h2 className="section-title">PART<span>NERS</span></h2>
+            <p className="section-desc">{t.partners.desc}</p>
           </header>
 
           <div className="pa-list" ref={listRef}>

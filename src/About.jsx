@@ -123,7 +123,7 @@ const CSS = `
     text-transform: uppercase;
     letter-spacing: -0.03em;
     line-height: 0.86;
-    color: #FFFDF7;
+    color: #FFFFFF;
     opacity: 0;
     filter: blur(24px);
     transform: scale(1.05);
@@ -135,7 +135,7 @@ const CSS = `
   }
   .ab-section.ab-in .ab-title { opacity: 1; filter: blur(0); transform: scale(1); }
 
-  .ab-title-accent { color: #FF1F3D; }
+  .ab-title-accent { color: #FFFFFF; }
 
   .ab-title-meta {
     display: flex;
@@ -182,40 +182,51 @@ const CSS = `
 
   .ab-copy-lead {
     font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: -0.01em;
     line-height: 1.1;
-    color: rgba(250,248,242,0.88);
-    margin-bottom: 1.25rem;
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
   }
 
   .ab-copy-body {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: clamp(0.9rem, 1.1vw, 1.0rem);
-    line-height: 1.90;
-    color: rgba(250,248,242,0.48);
+    font-size: clamp(0.95rem, 1.2vw, 1.075rem);
+    line-height: 2.0;
+    color: rgba(250,248,242,0.72);
   }
   .ab-copy-body em {
     font-style: normal;
-    color: rgba(250,248,242,0.72);
+    color: #FFFFFF;
+    font-weight: 600;
   }
 
   /* ── STATS ────────────────────────────────────────────────────── */
   .ab-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid rgba(250,248,242,0.08);
+    border-top: 2px solid rgba(255,31,61,0.30);
     padding-top: 2.5rem;
+    gap: 0;
   }
   .ab-stat {
     padding-right: 1.5rem;
-    border-right: 1px solid rgba(250,248,242,0.07);
+    padding-top: 1.5rem;
+    border-right: 1px solid rgba(250,248,242,0.10);
+    position: relative;
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px);
     transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .ab-stat::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: 0;
+    width: 28px; height: 2px;
+    background: #FF1F3D;
   }
   .ab-stat:last-child { border-right: none; padding-right: 0; }
 
@@ -226,27 +237,28 @@ const CSS = `
 
   .ab-stat-num {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 3vw, 3rem);
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
     font-weight: 700;
     line-height: 1;
     color: #FF1F3D;
     display: block;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(255,31,61,0.22);
   }
   .ab-stat-lbl {
     font-family: var(--font-body);
-    font-size: 9px; font-weight: 500;
-    letter-spacing: 0.20em; text-transform: uppercase;
-    color: rgba(250,248,242,0.40);
+    font-size: 0.6875rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(250,248,242,0.70);
     display: block;
   }
   .ab-stat-sub {
     font-family: var(--font-body);
-    font-size: 8px; font-weight: 500;
+    font-size: 0.625rem; font-weight: 500;
     letter-spacing: 0.12em;
-    color: rgba(250,248,242,0.18);
+    color: rgba(250,248,242,0.42);
     display: block;
-    margin-top: 3px;
+    margin-top: 4px;
   }
 
   /* ── BOTTOM BORDER ────────────────────────────────────────────── */
@@ -267,7 +279,8 @@ const CSS = `
     .ab-content { padding-top: 7rem; padding-bottom: 4rem; }
     .ab-stats { grid-template-columns: repeat(2, 1fr); gap: 2rem 0; }
     .ab-stat:nth-child(2n) { border-right: none; padding-right: 0; }
-    .ab-stat { padding-right: 1rem; }
+    .ab-stat { padding-right: 1rem; padding-top: 1.25rem; }
+    .ab-stat-num { font-size: clamp(2.2rem, 10vw, 2.8rem); }
   }
   @media (max-width: 420px) {
     .ab-title { font-size: clamp(4rem, 18vw, 6rem); }
@@ -304,7 +317,7 @@ export default function About() {
           <img
             className="ab-photo"
             src="/foto/lachy-spratt-s3ObQUr4Kzs-unsplash.jpg"
-            alt="South Calling Festival — Catania 2026"
+            alt="South Calling Festival 2026"
           />
         </div>
 
@@ -348,15 +361,7 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="ab-stats">
-                {t.about.stats.map(s => (
-                  <div className="ab-stat" key={s.label}>
-                    <span className="ab-stat-num">{s.number}</span>
-                    <span className="ab-stat-lbl">{s.label}</span>
-                    <span className="ab-stat-sub">{s.sub}</span>
-                  </div>
-                ))}
-              </div>
+
             </div>
 
           </div>

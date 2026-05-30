@@ -1,6 +1,25 @@
 const express = require('express');
 const router  = express.Router();
 const { router: analyticsRouter, trackEvent } = require('./analytics');
+const { createRateLimiter } = require('../middleware/rateLimit');
+const {
+  sanitizeString,
+  sanitizeEmail,
+  sanitizeDate,
+  sanitizeEnum,
+  isPlainObject,
+} = require('../middleware/validate');
+
+// Strict limiter for abuse-prone write endpoints: 5 attempts / 15 min / IP.
+// Each endpoint gets an independent bucket so one action can't exhaust another.
+const strictLimit = () => createRateLimiter({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: 'Troppi tentativi. Riprova tra 15 minuti.',
+});
+const newsletterLimiter = strictLimit();
+const contactLimiter    = strictLimit();
+const orderLimiter      = strictLimit();
 
 router.use('/analytics', analyticsRouter);
 
@@ -21,12 +40,16 @@ router.get('/stages', (req, res) => {
 });
 
 // POST newsletter
-router.post('/newsletter', (req, res) => {
-  const { email } = req.body;
-  if (!email || !email.includes('@'))
+router.post('/newsletter', newsletterLimiter, (req, res) => {
+  if (!isPlainObject(req.body))
+    return res.status(400).json({ success: false, message: 'Richiesta non valida.' });
+
+  const email = sanitizeEmail(req.body.email);
+  if (!email)
     return res.status(400).json({ success: false, message: 'Email non valida.' });
   if (subscribers.includes(email))
-    return res.status(409).json({ success: false, message: "Email già registrata!" });
+    return res.status(409).json({ success: false, message: 'Email già registrata!' });
+
   subscribers.push(email);
   trackEvent({ page: 'newsletter', action: 'newsletter_signup', sessionId: '_server', timestamp: new Date().toISOString() });
   console.log(`[NEWSLETTER] Nuovo iscritto: ${email}`);
@@ -34,14 +57,19 @@ router.post('/newsletter', (req, res) => {
 });
 
 // POST contact
-router.post('/contact', (req, res) => {
-  const { name, email, message } = req.body;
+router.post('/contact', contactLimiter, (req, res) => {
+  if (!isPlainObject(req.body))
+    return res.status(400).json({ success: false, message: 'Richiesta non valida.' });
+
+  const name    = sanitizeString(req.body.name,    { max: 100 });
+  const email   = sanitizeEmail(req.body.email);
+  const message = sanitizeString(req.body.message, { max: 2000 });
+
   if (!name || !email || !message)
-    return res.status(400).json({ success: false, message: 'Compila tutti i campi.' });
-  if (!email.includes('@'))
-    return res.status(400).json({ success: false, message: 'Email non valida.' });
+    return res.status(400).json({ success: false, message: 'Compila tutti i campi correttamente.' });
+
   messages.push({ name, email, message, date: new Date().toISOString() });
-  console.log(`[CONTACT] ${name} (${email}): ${message}`);
+  console.log(`[CONTACT] ${name} (${email}): ${message.slice(0, 200)}`);
   res.json({ success: true, message: 'Messaggio inviato! Ti risponderemo presto.' });
 });
 
@@ -93,10 +121,12 @@ router.get('/tickets', (req, res) => {
 });
 
 // POST ticket order
-router.post('/tickets/order', (req, res) => {
-  const { ticketType, category, weekendId, date, quantity, name, email } = req.body;
+router.post('/tickets/order', orderLimiter, (req, res) => {
+  if (!isPlainObject(req.body))
+    return res.status(400).json({ success: false, message: 'Richiesta non valida.' });
 
-  const VALID_WEEKENDS = ['w1', 'w2', 'w3'];
+  // The four itinerant stops (ids from src/data/festival.js).
+  const VALID_WEEKENDS = ['catania', 'palermo', 'agrigento', 'napoli'];
   const VALID_TYPES    = ['day', 'weekend', 'prive'];
   const VALID_CATS     = ['normal', 'vip'];
 
@@ -106,44 +136,52 @@ router.post('/tickets/order', (req, res) => {
     'prive-normal': 380,
   };
 
-  if (!VALID_TYPES.includes(ticketType))
+  const ticketType = sanitizeEnum(req.body.ticketType, VALID_TYPES);
+  if (!ticketType)
     return res.status(400).json({ success: false, message: 'Tipo biglietto non valido.' });
 
-  if (!VALID_WEEKENDS.includes(weekendId))
-    return res.status(400).json({ success: false, message: 'Weekend non valido.' });
+  const weekendId = sanitizeEnum(req.body.weekendId, VALID_WEEKENDS);
+  if (!weekendId)
+    return res.status(400).json({ success: false, message: 'Tappa non valida.' });
 
-  const cat = ticketType === 'prive' ? 'normal' : (category || 'normal');
+  const cat = ticketType === 'prive'
+    ? 'normal'
+    : sanitizeEnum(req.body.category, VALID_CATS) || 'normal';
   if (!VALID_CATS.includes(cat))
     return res.status(400).json({ success: false, message: 'Categoria non valida.' });
 
-  if (ticketType === 'day' && !date)
-    return res.status(400).json({ success: false, message: 'Seleziona il giorno.' });
+  let date = null;
+  if (ticketType === 'day') {
+    date = sanitizeDate(req.body.date);
+    if (!date)
+      return res.status(400).json({ success: false, message: 'Seleziona un giorno valido.' });
+  }
 
-  if (!name || !name.trim())
+  const name  = sanitizeString(req.body.name, { max: 100 });
+  if (!name)
     return res.status(400).json({ success: false, message: 'Nome obbligatorio.' });
 
-  if (!email || !email.includes('@'))
+  const email = sanitizeEmail(req.body.email);
+  if (!email)
     return res.status(400).json({ success: false, message: 'Email non valida.' });
 
-  const qty = Number(quantity);
+  const qty = Number(req.body.quantity);
   if (!Number.isInteger(qty) || qty < 1 || qty > 6)
     return res.status(400).json({ success: false, message: 'Quantità non valida (1–6).' });
 
-  const priceKey = `${ticketType}-${cat}`;
-  const unitPrice = PRICES[priceKey] || 0;
+  const unitPrice = PRICES[`${ticketType}-${cat}`] || 0;
   const total     = unitPrice * qty;
   const orderId   = `SC-${Date.now().toString(36).toUpperCase()}`;
 
   orders.push({
     orderId, ticketType, category: cat, weekendId,
-    date: date || null,
+    date,
     quantity: qty, unitPrice, total,
-    name: name.trim(),
-    email: email.toLowerCase().trim(),
+    name, email,
     createdAt: new Date().toISOString(),
   });
 
-  console.log(`[ORDER] ${orderId} — ${name} (${email}): ${qty}× ${ticketType}/${cat} weekend=${weekendId} = €${total}`);
+  console.log(`[ORDER] ${orderId} — ${name} (${email}): ${qty}× ${ticketType}/${cat} tappa=${weekendId} = €${total}`);
   trackEvent({ page: 'tickets', action: 'ticket_order', sessionId: '_server', timestamp: new Date().toISOString() });
 
   res.json({ success: true, orderId, total, message: 'Ordine ricevuto!' });

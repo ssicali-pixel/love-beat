@@ -89,8 +89,10 @@ function ContactForm() {
   return (
     <section className="section section-dark" id="contact">
       <div className="container">
-        <header className="section-header">
+        <header className="section-header sh-v">
+          <span className="section-tag">{t.contact.label}</span>
           <h2 className="section-title">{t.contact.title[0]}<span>{t.contact.title[1]}</span></h2>
+          <p className="section-desc">{t.contact.desc}</p>
         </header>
 
         <div className="contact-layout">
@@ -123,7 +125,7 @@ function ContactForm() {
               </div>
               <div className="ci-to-row">
                 <span className="ci-to-label">{t.contact.toLabel}</span>
-                <span className="ci-to-value">info@lovebeatfestival.it</span>
+                <span className="ci-to-value">info@southcallingfestival.it</span>
               </div>
             </div>
 
