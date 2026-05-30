@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useLang } from './LangContext';
-import { FESTIVAL, TAPPE } from './data/festival';
 
 export default function Footer() {
   const { t } = useLang();
@@ -26,9 +25,6 @@ export default function Footer() {
             <div className="ft-line"><span>Calls</span></div>
             <div className="ft-line ft-accent"><span>Once</span></div>
           </div>
-          <p className="footer-copy" style={{ marginTop: '2rem' }}>
-            {FESTIVAL.edition} — {TAPPE.map(tp => tp.city).join('  ·  ')}
-          </p>
         </div>
         <div className="footer-bottom">
           <p className="footer-copy">{t.footer.copy}</p>

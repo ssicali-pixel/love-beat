@@ -237,7 +237,6 @@ export default function Partners() {
       <section className="section" id="partners">
         <div className="container">
           <header className="section-header sh-v">
-            <span className="section-tag">{t.partners.label}</span>
             <h2 className="section-title">PART<span>NERS</span></h2>
             <p className="section-desc">{t.partners.desc}</p>
           </header>

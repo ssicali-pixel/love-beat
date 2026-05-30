@@ -90,7 +90,6 @@ function ContactForm() {
     <section className="section section-dark" id="contact">
       <div className="container">
         <header className="section-header sh-v">
-          <span className="section-tag">{t.contact.label}</span>
           <h2 className="section-title">{t.contact.title[0]}<span>{t.contact.title[1]}</span></h2>
           <p className="section-desc">{t.contact.desc}</p>
         </header>

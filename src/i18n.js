@@ -28,9 +28,15 @@ export const STRINGS = {
       nextLabel: 'Next stop',
       cta:       'Get tickets',
     },
+    arrival: {
+      eyebrow: 'Now landing',
+      label:   'Next stop',
+      cta:     'See the line-up',
+    },
     about: {
       eyebrow: 'Est. 2026 — House Music Festival',
       genre:   'House · Techno · Afro',
+      title:   ['About', 'Us'],
       lead:    'The sound of the South. Amplified.',
       body1:   'is the travelling festival crossing four cities of the South — Catania, Palermo, Agrigento and Naples. Four stops, twelve hours of continuous music per night — from sunset to dawn over the Mediterranean — thousands of people united by a single, unstoppable rhythm.',
       body2:   'One festival. One vision. Infinite memories.',
@@ -81,6 +87,14 @@ export const STRINGS = {
       desc:  'The brands and media that bring South Calling to life across the South.',
     },
     ratings: {
+      title:        ['The festival', 'in numbers.'],
+      reviewsTitle: ['REVI', 'EWS'],
+      stats: [
+        { label: 'Attendees',  desc: 'Expected across the festival venues, from ports to quarries' },
+        { label: 'Stages',     desc: "Main, Porto and Cave — three settings, one night" },
+        { label: 'Of music',   desc: 'From sunset to sunrise, non-stop' },
+        { label: 'DJ Artists', desc: 'House, techno and deep — from all over the world' },
+      ],
       starsAria: (n) => `${n} stars out of 5`,
       reviews: [
         { name: 'Marco R.',  rating: 5, text: "The best musical experience I've ever had in Sicily. A real festival, not a fairground.", date: '2025' },
@@ -172,9 +186,15 @@ export const STRINGS = {
       nextLabel: 'Prossima tappa',
       cta:       'Biglietti',
     },
+    arrival: {
+      eyebrow: 'In arrivo',
+      label:   'Prossima tappa',
+      cta:     'Scopri la line-up',
+    },
     about: {
       eyebrow: 'Est. 2026 — House Music Festival',
       genre:   'House · Techno · Afro',
+      title:   ['Chi', 'Siamo'],
       lead:    'Il suono del Sud. Amplificato.',
       body1:   "è il festival itinerante che attraversa quattro città del Sud — Catania, Palermo, Agrigento e Napoli. Quattro tappe, dodici ore di musica continua a serata — dal tramonto all'alba sul Mediterraneo — migliaia di persone unite da un unico, inarrestabile ritmo.",
       body2:   'Un festival. Una visione. Ricordi infiniti.',
@@ -225,6 +245,14 @@ export const STRINGS = {
       desc:  'I brand e i media che danno vita a South Calling in tutto il Sud.',
     },
     ratings: {
+      title:        ['Il festival', 'in numeri.'],
+      reviewsTitle: ['REVI', 'EWS'],
+      stats: [
+        { label: 'Partecipanti', desc: 'Presenze attese tra le venue del festival, dai porti alle cave' },
+        { label: 'Stage',        desc: "Main, Porto e Cave — tre ambienti, un'unica notte" },
+        { label: 'Di musica',    desc: "Dal tramonto all'alba, senza interruzioni" },
+        { label: 'DJ Artisti',   desc: 'House, techno e deep — da tutto il mondo' },
+      ],
       starsAria: (n) => `${n} stelle su 5`,
       reviews: [
         { name: 'Marco R.',  rating: 5, text: 'La migliore esperienza musicale che abbia mai vissuto in Sicilia. Un festival vero, non una sagra.', date: '2025' },

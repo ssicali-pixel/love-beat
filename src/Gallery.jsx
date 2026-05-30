@@ -147,7 +147,6 @@ export default function Gallery() {
       <section className="section section-dark" id="gallery">
         <div className="container">
           <header className="section-header sh-v">
-            <span className="section-tag">{t.gallery.label}</span>
             <h2 className="section-title">GALLE<span>RY</span></h2>
             <p className="section-desc">{t.gallery.desc}</p>
           </header>

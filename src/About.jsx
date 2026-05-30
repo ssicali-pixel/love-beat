@@ -330,7 +330,6 @@ export default function About() {
 
           {/* Eyebrow */}
           <div className="ab-eyebrow">
-            <span className="ab-ey-tag">{t.about.eyebrow}</span>
             <span className="ab-ey-line" />
             <span className="ab-ey-genre">{t.about.genre}</span>
           </div>
@@ -341,8 +340,8 @@ export default function About() {
             {/* Left — Title */}
             <div className="ab-left">
               <h2 className="ab-title">
-                About<br />
-                <span className="ab-title-accent">Us</span>
+                {t.about.title[0]}<br />
+                <span className="ab-title-accent">{t.about.title[1]}</span>
               </h2>
               <div className="ab-title-meta">
                
