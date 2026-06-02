@@ -105,18 +105,18 @@ const CSS = `
   }
   .ev-wk-range {
     font-family: var(--font-body);
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(26,120,200,0.65);
+    color: rgba(26,120,200,0.88);
     display: block;
     margin-bottom: 18px;
     transition: color 0.42s;
   }
   .ev-wk-count {
     font-family: var(--font-body);
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -150,7 +150,7 @@ const CSS = `
   .ev-day-btn {
     position: relative; overflow: hidden;
     font-family: var(--font-body);
-    font-size: 10px; font-weight: 500;
+    font-size: 12px; font-weight: 500;
     letter-spacing: 0.2em; text-transform: uppercase;
     background: transparent;
     border: 1px solid rgba(26,120,200,0.25);
@@ -196,7 +196,7 @@ const CSS = `
   .ev-stage-btn {
     position: relative; overflow: hidden;
     font-family: var(--font-body);
-    font-size: 9px; font-weight: 500;
+    font-size: 11px; font-weight: 500;
     letter-spacing: 0.16em; text-transform: uppercase;
     background: transparent;
     border: 1px solid rgba(26,120,200,0.18);
@@ -317,7 +317,7 @@ const CSS = `
   .ev-hl-badge {
     display: inline-block;
     font-family: var(--font-body);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -329,14 +329,14 @@ const CSS = `
   .ev-genre {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
-    color: rgba(26,120,200,0.55);
+    font-size: clamp(1rem, 1.6vw, 1.125rem);
+    color: rgba(26,120,200,0.88);
     line-height: 1.4;
   }
 
   .ev-stage-badge {
     font-family: var(--font-body);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -392,7 +392,7 @@ const CSS = `
   .ev-modal-time-stage { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
   .ev-modal-time { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: #FF1F3D; }
   .ev-modal-stage-badge {
-    font-family: var(--font-body); font-size: 8px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 10px; border: 1px solid;
   }
 
@@ -404,29 +404,29 @@ const CSS = `
   }
   .ev-modal-hl {
     display: inline-block; font-family: var(--font-body);
-    font-size: 8px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
     background: #FF1F3D; color: #FFFDF7; padding: 3px 8px;
     margin-left: 12px; vertical-align: middle; position: relative; top: -6px;
   }
   .ev-modal-meta {
-    font-family: var(--font-body); font-size: 10px; font-weight: 500;
+    font-family: var(--font-body); font-size: 12px; font-weight: 500;
     letter-spacing: 0.2em; text-transform: uppercase;
     color: rgba(26,120,200,0.4); margin-bottom: 28px;
   }
   .ev-modal-divider { border: none; border-top: 1px solid rgba(26,120,200,0.10); margin: 0 0 24px; }
   .ev-modal-bio {
-    font-family: var(--font-body); font-weight: 500; font-size: 0.9375rem;
-    color: rgba(26,120,200,0.72); line-height: 1.78; margin-bottom: 28px;
+    font-family: var(--font-body); font-weight: 600; font-size: 1.125rem;
+    color: rgba(26,120,200,0.90); line-height: 1.78; margin-bottom: 28px;
   }
   .ev-modal-tracks-label {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.24em; text-transform: uppercase;
     color: rgba(26,120,200,0.38); margin-bottom: 12px; display: block;
   }
   .ev-modal-tracks { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
   .ev-modal-track {
-    font-family: var(--font-body); font-size: 0.875rem; font-weight: 500;
-    color: rgba(26,120,200,0.62); display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-body); font-size: 1.0625rem; font-weight: 600;
+    color: rgba(26,120,200,0.88); display: flex; align-items: center; gap: 10px;
   }
   .ev-modal-track-num {
     font-family: var(--font-display); font-size: 0.75rem; font-weight: 700;
@@ -441,7 +441,7 @@ const CSS = `
     text-transform: uppercase; letter-spacing: -0.01em; color: #1A78C8;
   }
   .ev-modal-stage-loc {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,120,200,0.4); margin-top: 3px;
   }
   .ev-modal-stage-cap {
@@ -465,12 +465,12 @@ const CSS = `
   .ev-modal-head { min-width: 0; flex: 1; }
 
   .ev-modal-tickets-label {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.24em; text-transform: uppercase;
     color: rgba(26,120,200,0.38); margin: 28px 0 12px; display: block;
   }
   .ev-modal-wk-meta {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.16em; text-transform: uppercase;
     color: rgba(26,120,200,0.32); margin-bottom: 12px;
   }
@@ -545,7 +545,7 @@ const CSS = `
   .ev-ticket-sub-badge {
     grid-column: 2;
     font-family: var(--font-body);
-    font-size: 7px;
+    font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -571,7 +571,7 @@ const CSS = `
 
   .ev-ticket-sub-desc {
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -585,7 +585,7 @@ const CSS = `
     font-family: var(--font-body);
     font-size: 0.8125rem;
     font-weight: 500;
-    color: rgba(26,120,200,0.58);
+    color: rgba(26,120,200,0.85);
     margin-top: 10px;
     line-height: 1.55;
   }
@@ -611,7 +611,7 @@ const CSS = `
 
   .ev-ticket-sub-from {
     font-family: var(--font-body);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -624,7 +624,7 @@ const CSS = `
   .ev-ticket-sub-cta {
     grid-column: 2 / 4;
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -650,7 +650,7 @@ const CSS = `
     flex: 1;
     padding: 10px;
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -691,7 +691,7 @@ const CSS = `
   }
 
   .pm-wk {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.24em; text-transform: uppercase;
     color: rgba(26,120,200,0.38); margin-bottom: 8px; display: block;
   }
@@ -708,7 +708,7 @@ const CSS = `
   .pm-toggle-row { display: flex; gap: 0; margin-bottom: 20px; }
   .pm-toggle-opt {
     flex: 1; padding: 10px; text-align: center; cursor: pointer;
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.18em; text-transform: uppercase;
     border: 1px solid rgba(26,120,200,0.16); color: rgba(26,120,200,0.5);
     background: transparent; transition: all 0.15s;
@@ -718,7 +718,7 @@ const CSS = `
 
   .pm-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 18px; }
   .pm-field label {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.24em; text-transform: uppercase; color: rgba(26,120,200,0.42);
   }
   .pm-field input {
@@ -732,7 +732,7 @@ const CSS = `
 
   .pm-qty-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
   .pm-qty-lbl {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.24em; text-transform: uppercase; color: rgba(26,120,200,0.42);
   }
   .pm-qty-ctrl { display: flex; align-items: center; border: 1px solid rgba(26,120,200,0.16); }
@@ -760,7 +760,7 @@ const CSS = `
     margin-bottom: 22px;
   }
   .pm-total-lbl {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.24em; text-transform: uppercase; color: rgba(26,120,200,0.42);
   }
   .pm-total-amt { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #FF1F3D; line-height: 1; }
@@ -769,7 +769,7 @@ const CSS = `
 
   .pm-submit {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 18px; font-family: var(--font-body); font-size: 10px;
+    padding: 14px 18px; font-family: var(--font-body); font-size: 12px;
     font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
     cursor: pointer; border: none; background: #FF1F3D; color: #FFFDF7; width: 100%;
     box-shadow: 0 10px 24px rgba(26,120,200,0.25);
@@ -785,14 +785,14 @@ const CSS = `
     display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
   }
   .pm-success-order {
-    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
     letter-spacing: 0.26em; text-transform: uppercase; color: rgba(26,120,200,0.4); margin-bottom: 12px;
   }
   .pm-success h3 {
     font-family: var(--font-display); font-size: 1.75rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: -0.02em; color: #1A78C8; margin-bottom: 8px;
   }
-  .pm-success p { font-family: var(--font-body); font-size: 0.875rem; color: rgba(26,120,200,0.56); line-height: 1.65; margin-bottom: 4px; }
+  .pm-success p { font-family: var(--font-body); font-size: 0.875rem; color: rgba(26,120,200,0.85); line-height: 1.65; margin-bottom: 4px; }
   .pm-success p strong { color: #1A78C8; font-weight: 500; }
   .pm-success .pm-submit { margin-top: 24px; justify-content: center; }
 

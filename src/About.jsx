@@ -88,7 +88,7 @@ const CSS = `
 
   .ab-ey-tag {
     font-family: var(--font-body);
-    font-size: 9px; font-weight: 500;
+    font-size: 11px; font-weight: 500;
     letter-spacing: 0.30em; text-transform: uppercase;
     color: rgba(250,248,242,0.38);
     white-space: nowrap;
@@ -99,7 +99,7 @@ const CSS = `
   }
   .ab-ey-genre {
     font-family: var(--font-body);
-    font-size: 9px; font-weight: 500;
+    font-size: 11px; font-weight: 500;
     letter-spacing: 0.22em; text-transform: uppercase;
     color: rgba(255,31,61,0.60);
     white-space: nowrap;
@@ -150,7 +150,7 @@ const CSS = `
 
   .ab-title-date {
     font-family: var(--font-body);
-    font-size: 9px; font-weight: 500;
+    font-size: 11px; font-weight: 500;
     letter-spacing: 0.28em; text-transform: uppercase;
     color: rgba(250,248,242,0.30);
   }
@@ -160,7 +160,7 @@ const CSS = `
   }
   .ab-title-loc {
     font-family: var(--font-body);
-    font-size: 9px; font-weight: 500;
+    font-size: 11px; font-weight: 500;
     letter-spacing: 0.28em; text-transform: uppercase;
     color: rgba(250,248,242,0.30);
   }
@@ -194,9 +194,9 @@ const CSS = `
   .ab-copy-body {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: clamp(0.95rem, 1.2vw, 1.075rem);
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
     line-height: 2.0;
-    color: rgba(250,248,242,0.72);
+    color: rgba(250,248,242,0.92);
   }
   .ab-copy-body em {
     font-style: normal;
@@ -247,16 +247,16 @@ const CSS = `
   }
   .ab-stat-lbl {
     font-family: var(--font-body);
-    font-size: 0.6875rem; font-weight: 500;
+    font-size: 0.8125rem; font-weight: 500;
     letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(250,248,242,0.70);
+    color: rgba(250,248,242,0.92);
     display: block;
   }
   .ab-stat-sub {
     font-family: var(--font-body);
-    font-size: 0.625rem; font-weight: 500;
+    font-size: 0.75rem; font-weight: 500;
     letter-spacing: 0.12em;
-    color: rgba(250,248,242,0.42);
+    color: rgba(250,248,242,0.72);
     display: block;
     margin-top: 4px;
   }

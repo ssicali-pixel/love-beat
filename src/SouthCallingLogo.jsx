@@ -20,7 +20,7 @@ export default function SouthCallingLogo({ style }) {
         <text
           x="1440"
           y="1992"
-          style={{ fontFamily: "'Quicksand', sans-serif", fontWeight: 700, fontSize: '190px', fill: 'rgb(255,0,0)', letterSpacing: '18px' }}
+          style={{ fontFamily: "'Quicksand', sans-serif", fontWeight: 700, fontSize: '280px', fill: 'rgb(255,0,0)', letterSpacing: '18px' }}
         >
           HOUSE FESTIVAL
         </text>
